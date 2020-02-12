@@ -4,6 +4,7 @@ USER root
 
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
+COPY Gemfile.lock /myapp/Gemfile.lock
 
 USER gitpod
 
