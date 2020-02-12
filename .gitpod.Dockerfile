@@ -1,4 +1,4 @@
-FROM gitpod/workspace-full:latest
+FROM ruby:2.6.5
 
 USER root
 
@@ -6,7 +6,7 @@ RUN sudo apt-get update -qq && apt-get install -y nodejs postgresql-client && mk
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 
-RUN gem install bundler && bundler --version && bundle install
+RUN bundle install
 
 EXPOSE 3000
 
