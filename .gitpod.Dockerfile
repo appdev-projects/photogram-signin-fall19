@@ -1,9 +1,14 @@
 FROM gitpod/workspace-full:latest
 
-RUN mkdir /myapp
+USER root
+
+RUN sudo apt-get update -qq && apt-get install -y nodejs postgresql-client && mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
-RUN ruby -v && gem install bundler && pwd
+
+USER gitpod
+
+RUN ruby -v && gem install bundler
 RUN bundle install
 
 EXPOSE 3000
