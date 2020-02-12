@@ -6,7 +6,7 @@ RUN sudo apt-get update -qq && apt-get install -y nodejs postgresql-client && mk
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 
-RUN bundler --version && bundle install
+RUN gem install bundler && bundler --version && bundle install
 
 EXPOSE 3000
 
