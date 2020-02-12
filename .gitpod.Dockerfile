@@ -2,7 +2,6 @@ FROM ruby:2.6.5
 
 USER root
 
-RUN sudo apt-get update -qq && apt-get install -y nodejs postgresql-client && mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 
