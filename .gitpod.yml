@@ -1,7 +1,14 @@
-image: jelaniwoods/appdev-ruby2_6_5
+image:
+  file: .gitpod.Dockerfile
 
 tasks:
   - init: bin/setup
 ports:
   - port: 3000
     onOpen: open-preview
+
+vscode:
+  extensions:
+    - shd101wyy.markdown-preview-enhanced@0.5.1:s3vD5qiY6/HbtRrgDlbMiQ==
+    - vortizhe.simple-ruby-erb@0.2.1:BzpDuNAqJwUkxqT2t1YIuQ==
+    - CraigMaslowski.erb@0.0.1:5znDha/nn0PphUrpB9a5Nw==
