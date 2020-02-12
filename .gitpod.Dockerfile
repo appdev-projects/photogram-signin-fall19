@@ -8,7 +8,7 @@ COPY Gemfile /myapp/Gemfile
 
 USER gitpod
 
-RUN bundle install
+RUN bundler --version && bundle install
 
 EXPOSE 3000
 
