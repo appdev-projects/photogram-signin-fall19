@@ -8,7 +8,6 @@ COPY Gemfile /myapp/Gemfile
 
 USER gitpod
 
-RUN ruby -v && gem install bundler
 RUN bundle install
 
 EXPOSE 3000
