@@ -16,7 +16,7 @@ WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 RUN /bin/bash -l -c "rvm use --default 2.6.5"
-RUN chmod -R a+rX .
+RUN chmod 775 Gemfile Gemfile.lock
 USER gitpod
 WORKDIR /myapp
 
