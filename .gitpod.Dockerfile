@@ -18,7 +18,7 @@ RUN /bin/bash -l -c "rvm use --default 2.6.5"
 USER gitpod
 
 WORKDIR /myapp
-RUN /bin/bash -l -c "gem install bundler"
 RUN /bin/bash -l -c "export GEM_HOME=$(ruby -e 'puts Gem.user_dir')"
+RUN /bin/bash -l -c "gem install bundler"
 
 RUN /bin/bash -l -c "bundle install"
