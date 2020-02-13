@@ -9,16 +9,14 @@ RUN curl -L https://get.rvm.io | bash -s stable
 #Set env just in case
 ENV PATH /usr/local/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 RUN /bin/bash -l -c "rvm requirements"
-RUN /bin/bash -l -c "rvm get stable --auto-dotfiles"
 RUN /bin/bash -l -c "rvm install 2.6.5"
 RUN /bin/bash -l -c "gem install bundler"
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 RUN /bin/bash -l -c "rvm use --default 2.6.5"
-RUN chmod 775 Gemfile Gemfile.lock
 USER gitpod
 WORKDIR /myapp
 
-RUN /bin/bash -l -c "bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java"
+RUN /bin/bash -l -c "sudo bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java"
 RUN /bin/bash -l -c "bundle install"
