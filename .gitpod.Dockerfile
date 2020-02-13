@@ -15,8 +15,10 @@ WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 RUN /bin/bash -l -c "rvm use --default 2.6.5"
+RUN chmod 775 Gemfile
+RUN /bin/bash -l -c "chmod 775 Gemfile.lock"
 USER gitpod
 WORKDIR /myapp
 
-RUN /bin/bash -l -c "sudo bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java"
+RUN /bin/bash -l -c "bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java"
 RUN /bin/bash -l -c "bundle install"
