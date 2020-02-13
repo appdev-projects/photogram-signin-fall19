@@ -21,4 +21,4 @@ RUN /bin/bash -l -c "sudo chmod 664 /home/gitpod/.rvm/gems/*"
 USER gitpod
 WORKDIR ~/myapp
 
-RUN /bin/bash -l -c "bundle install"
+RUN /bin/bash -l -c "bundle install --path ~/.gem"
