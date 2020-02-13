@@ -11,14 +11,13 @@ ENV PATH /usr/local/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/s
 RUN /bin/bash -l -c "rvm requirements"
 RUN /bin/bash -l -c "rvm install 2.6.5"
 RUN /bin/bash -l -c "gem install bundler"
-WORKDIR /myapp
+WORKDIR ~/myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 RUN /bin/bash -l -c "rvm use --default 2.6.5"
 RUN sudo usermod -a -G rvm gitpod
-RUN sudo chmod 664 $GEM_HOME/build_info/*
 
 USER gitpod
-WORKDIR /myapp
+WORKDIR ~/myapp
 
 RUN /bin/bash -l -c "bundle install"
