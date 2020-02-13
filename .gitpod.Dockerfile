@@ -14,6 +14,7 @@ WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 RUN /bin/bash -l -c "rvm use --default 2.6.5"
+RUN /bin/bash -l -c "export GEM_HOME=$(ruby -e 'puts Gem.user_dir')"
 
 USER gitpod
 
