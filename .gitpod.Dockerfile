@@ -20,3 +20,4 @@ COPY Gemfile.lock /myapp/Gemfile.lock
 RUN /bin/bash -l -c "rvm use --default 2.6.5"
 
 RUN /bin/bash -l -c "bundle install"
+RUN /bin/bash -l -c "yarn install --check-files"
