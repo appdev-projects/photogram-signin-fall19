@@ -11,7 +11,7 @@ ENV PATH /usr/local/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/s
 RUN /bin/bash -l -c "rvm requirements"
 RUN /bin/bash -l -c "rvm get stable --auto-dotfiles"
 RUN /bin/bash -l -c "rvm install 2.6.5"
-RUN /bin/bash -l -c "gem install bundler --no-rdoc"
+RUN /bin/bash -l -c "gem install bundler"
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
