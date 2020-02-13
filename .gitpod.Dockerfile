@@ -16,8 +16,8 @@ WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 
-RUN /bin/bash -l -c "rvm use 2.6.5 && bundle install"
+RUN /bin/bash -l -c "rvm use --default 2.6.5 && bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java && bundle install"
 
 USER gitpod
 WORKDIR /myapp
-RUN /bin/bash -l -c "rvm use --default 2.6.5 && bundle install"
+RUN /bin/bash -l -c "rvm use 2.6.5 && bundle install"
