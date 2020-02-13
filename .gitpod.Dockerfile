@@ -18,7 +18,8 @@ RUN /bin/bash -l -c "rvm use --default 2.6.5"
 USER gitpod
 
 WORKDIR /myapp
-RUN /bin/bash -l -c "PATH="`ruby -e 'puts Gem.user_dir'`/bin:$PATH""
+ENV PATH /home/gitpod/.gem/ruby/2.6.0/bin
+ENV PATH `ruby -e 'puts Gem.user_dir'`/bin:$PATH
 RUN /bin/bash -l -c "gem install bundler --user-install"
 
 RUN /bin/bash -l -c "bundle install"
