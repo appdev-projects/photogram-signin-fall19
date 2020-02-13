@@ -15,7 +15,7 @@ RUN /bin/bash -l -c "gem install bundler"
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
-RUN "rvm use --default 2.6.5"
+RUN /bin/bash -l -c "rvm use --default 2.6.5"
 
 USER gitpod
 WORKDIR /myapp
