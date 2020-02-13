@@ -17,6 +17,4 @@ COPY Gemfile.lock /myapp/Gemfile.lock
 USER gitpod
 
 WORKDIR /myapp
-RUN /bin/bash -l -c "rvm use --default 2.6.5"
-
-RUN bundle install
+RUN /bin/bash -l -c "rvm use 2.6.5 && bundle install"
