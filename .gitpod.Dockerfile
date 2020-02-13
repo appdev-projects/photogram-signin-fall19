@@ -15,8 +15,8 @@ WORKDIR ~/myapp
 COPY Gemfile ~/myapp/Gemfile
 COPY Gemfile.lock ~/myapp/Gemfile.lock
 RUN /bin/bash -l -c "rvm use --default 2.6.5"
-RUN sudo usermod -a -G rvm gitpod
-RUN sudo chmod 664 /home/gitpod/.rvm/gems/ruby-2.6.5/*
+RUN /bin/bash -l -c "sudo usermod -a -G rvm gitpod"
+RUN /bin/bash -l -c "sudo chmod 664 /home/gitpod/.rvm/gems/ruby-2.6.5/*"
 
 USER gitpod
 WORKDIR ~/myapp
