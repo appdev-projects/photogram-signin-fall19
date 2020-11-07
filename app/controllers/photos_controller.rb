@@ -33,8 +33,8 @@ class PhotosController < ApplicationController
   def update
     id = params.fetch("the_photo_id")
     photo = Photo.where({ :id => id }).at(0)
-    photo.caption = params.fetch("input_caption", photo.caption)
-    photo.image = params.fetch("input_image", photo.image)
+    photo.caption = params.fetch("input_caption")
+    photo.image = params.fetch("input_image")
     photo.save
 
     redirect_to("/photos/#{photo.id}")

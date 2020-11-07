@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    the_username = params.fetch(:the_username)
+    the_username = params.fetch("the_username")
     @user = User.where({ :username => the_username }).at(0)
 
     respond_to do |format|
@@ -31,22 +31,15 @@ class UsersController < ApplicationController
   def create
     user = User.new
 
-    user.username = params.fetch(:input_username, nil)
-    user.private = params.fetch(:input_private, nil)
-    user.likes_count = params.fetch(:input_likes_count, 0)
-    user.comments_count = params.fetch(:input_comments_count, 0)
+    user.username = params.fetch("input_username")
+    user.private = params.fetch("input_private", false)
+    user.likes_count = params.fetch("input_likes_count", 0)
+    user.comments_count = params.fetch("input_comments_count", 0)
 
     user.save
 
-    respond_to do |format|
-      format.json do
-        render({ :json => @user.as_json })
-      end
+    redirect_to("/users/#{user.username}")
 
-      format.html do
-        redirect_to("/users/#{user.username}")
-      end
-    end
   end
 
   def update
@@ -54,57 +47,41 @@ class UsersController < ApplicationController
     user = User.where({ :id => the_id }).at(0)
 
 
-    user.username = params.fetch(:input_username, user.username)
-    user.private = params.fetch(:input_private, nil)
-    user.likes_count = params.fetch(:input_likes_count, user.likes_count)
-    user.comments_count = params.fetch(:input_comments_count, user.comments_count)
+    user.username = params.fetch("input_username")
+    user.private = params.fetch("input_private", false)
+    user.likes_count = params.fetch("input_likes_count", user.likes_count)
+    user.comments_count = params.fetch("input_comments_count", user.comments_count)
 
     user.save
 
-    respond_to do |format|
-      format.json do
-        render({ :json => user.as_json })
-      end
-
-      format.html do
-        redirect_to("/users/#{user.username}")
-      end
-    end
+    redirect_to("/users/#{user.username}")
   end
-
+  
   def destroy
-    username = params.fetch(:the_username)
+    username = params.fetch("the_username")
     user = User.where({ :username => username }).at(0)
-
+    
     user.destroy
-
-    render({ :json => user.as_json })
+    
+    redirect_to("/users")
   end
 
   def liked_photos
-    username = params.fetch(:the_username)
+    username = params.fetch("the_username")
     @user = User.where({ :username => username }).at(0)
 
-    respond_to do |format|
-      format.json do
-        render({ :json => @user.liked_photos.as_json })
-      end
-
-      format.html do
-        render({ :template => "users/liked_photos.html.erb" })
-      end
-    end
+    render({ :template => "users/liked_photos.html.erb" })
   end
 
   def own_photos
-    username = params.fetch(:the_username)
+    username = params.fetch("the_username")
     user = User.where({ :username => username }).at(0)
 
     render({ :json => user.own_photos.as_json })
   end
 
   def feed
-    username = params.fetch(:the_username)
+    username = params.fetch("the_username")
     @user = User.where({ :username => username }).at(0)
 
     respond_to do |format|
@@ -119,7 +96,7 @@ class UsersController < ApplicationController
   end
 
   def discover
-    username = params.fetch(:the_username)
+    username = params.fetch("the_username")
     @user = User.where({ :username => username }).at(0)
 
     respond_to do |format|

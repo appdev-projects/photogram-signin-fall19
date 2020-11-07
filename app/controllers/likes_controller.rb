@@ -6,7 +6,7 @@ class LikesController < ApplicationController
   end
 
   def show
-    the_id = params.fetch(:the_like_id)
+    the_id = params.fetch("the_like_id")
     like = Like.where({ :id => the_id }).at(0)
 
     render({ :json => like.as_json })
@@ -14,8 +14,8 @@ class LikesController < ApplicationController
 
   def create
     like = Like.new
-    like.fan_id = params.fetch(:input_fan_id, nil)
-    like.photo_id = params.fetch(:input_photo_id, nil)
+    like.fan_id = params.fetch("input_fan_id")
+    like.photo_id = params.fetch("input_photo_id")
     like.save
 
     respond_to do |format|
@@ -30,17 +30,17 @@ class LikesController < ApplicationController
   end
 
   def update
-    the_id = params.fetch(:the_like_id)
+    the_id = params.fetch("the_like_id")
     like = Like.where({ :id => the_id }).at(0)
-    like.fan_id = params.fetch(:input_fan_id, nil)
-    like.photo_id = params.fetch(:input_photo_id, nil)
+    like.fan_id = params.fetch("input_fan_id")
+    like.photo_id = params.fetch("input_photo_id")
     like.save
 
     render({ :json => like.as_json })
   end
 
   def destroy
-    like = Like.find(params.fetch(:the_like_id)).destroy
+    like = Like.find(params.fetch("the_like_id")).destroy
     like.destroy
 
     render({ :json => like.as_json })
